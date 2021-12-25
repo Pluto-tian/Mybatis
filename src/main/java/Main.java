@@ -18,6 +18,5 @@ public class Main {
         List<User> list = session.selectList("getUserList");
         list.forEach(System.out::println);
         final User user = list.get(1);
-        System.out.println(user.getRegistration_datetime());
     }
 }

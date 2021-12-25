@@ -1,4 +1,7 @@
 package pojo.user;
+
+import java.util.Date;
+
 /**
  * @author Hoaer
  * @version 1.0
@@ -9,9 +12,9 @@ public class User {
     private String username;
     private String password;
     private String phone;
-    private String registration_datetime;
+    private final Date registration_datetime;
 
-    public User(int id, String username, String password, String phone, String registration_datetime) {
+    public User(int id, String username, String password, String phone, Date registration_datetime) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -51,14 +54,9 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRegistration_datetime() {
+    public Date getRegistration_datetime() {
         return registration_datetime;
     }
-
-    public void setRegistration_datetime(String registration_datetime) {
-        this.registration_datetime = registration_datetime;
-    }
-
     @Override
     public String toString() {
         return "User{" +

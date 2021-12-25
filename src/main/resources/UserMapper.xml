@@ -5,6 +5,23 @@
 
 <mapper namespace="mapper.UserMapper">
     <select id="getUserList" resultType="pojo.user.User">
-        select * from user
+        select *
+        from user
     </select>
+    <insert id="add_User" parameterType="pojo.user.User">
+        insert into flask.user(id, username, password, phone)
+        VALUES (#{id}, #{username}, #{password}, #{phone})
+    </insert>
+    <!--
+    resultType 返回值类型
+    parameterType 参数类型
+    -->
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from flask.user
+        where id = #{id}
+    </delete>
+    <update id="update" parameterType="pojo.user.User">
+        update flask.user set password=#{password} where id=#{id};
+    </update>
 </mapper>
