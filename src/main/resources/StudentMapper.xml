@@ -3,12 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.StudentMapper">
-    <delete id="delectStudent" parameterType="int">
+    <delete id="deleteStudent" parameterType="int">
         delete
         from blog.student
         where id = #{id}
     </delete>
-    <insert id="add" parameterType="pojo.user.Student">
-        insert into blog.student values (#{id},#{name},#{gender},#{subject},#{grade},#{add_time})
+    <insert id="add" parameterType="student">
+        insert into blog.student
+        values (#{id}, #{name}, #{gender}, #{subject}, #{grade}, #{add_time})
     </insert>
+    <update id="update" parameterType="map">
+        update blog.student
+        set grade = #{grade}
+        where id = #{id}
+    </update>
+    <select id="fuzzy_query" parameterType="map" resultType="student">
+        select *
+        from blog.student
+        where name like #{string}
+    </select>
+    <resultMap id="StudentMap" type="Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <select id="seletelimit" parameterType="map" resultMap="StudentMap">
+        select * from blog.student limit #{startIndex},#{pageSize}
+    </select>
+
 </mapper>

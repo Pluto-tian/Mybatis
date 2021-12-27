@@ -26,11 +26,11 @@ public class UserMapperTest {
     }
 
     @Test
-    public void DelectUser() {
+    public void DeleteUser() {
         final SqlSession sqlSession = MybatisUtils.getSqlSession();
         final UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        final int delectUser = mapper.deleteUser(1);
-        if (delectUser > 0) {
+        final int deleteUser = mapper.deleteUser(1);
+        if (deleteUser > 0) {
             sqlSession.commit();
         }
         sqlSession.close();
@@ -41,13 +41,11 @@ public class UserMapperTest {
         final SqlSession sqlSession = MybatisUtils.getSqlSession();
         final UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        final int user = mapper.add_User(new User(1, "路遥",
-                "01aa15d1a", "1826487451", date));
+        final int user = mapper.add_User(new User(4, "路遥", "01aa15d1a", "1846487451", date));
         if (user > 0) {
             sqlSession.commit();
         }
         sqlSession.close();
-
     }
 
     @Test
@@ -55,8 +53,7 @@ public class UserMapperTest {
 
         final SqlSession sqlSession = MybatisUtils.getSqlSession();
         final UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        final int update = mapper.update(new User(1, "路遥",
-                "01ada551154", "1826487451", date));
+        final int update = mapper.update(new User(1, "路遥", "01ada551154", "1826487451", date));
         if (update > 0) {
             sqlSession.commit();
         }

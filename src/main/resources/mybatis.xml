@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
     <!--环境的配置-->
+    <properties resource="configuration.properties"/>
+
+    <settings>
+        <!--设置日志工厂-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <!--别名-->
+    <typeAliases>
+        <!--类型别名-->
+        <typeAlias type="pojo.user.User" alias="User"/>
+        <!--包别名-->
+        <package name="pojo.user"/>
+    </typeAliases>
     <environments default="development">
         <environment id="development">
             <!--
@@ -15,11 +29,12 @@
                 dataSource:数据源配置
                 type="POOLED":是否采用连接池技术
             -->
+
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
 

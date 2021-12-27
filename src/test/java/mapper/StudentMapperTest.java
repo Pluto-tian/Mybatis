@@ -5,7 +5,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import pojo.user.Student;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Hoaer
@@ -13,11 +14,11 @@ import java.util.Date;
  */
 public class StudentMapperTest {
     @Test
-    public void delectStudent(){
+    public void deleteStudent(){
         final SqlSession sqlSession = MybatisUtils.getSqlSession();
         final StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        final int delectStudent = mapper.delectStudent(1);
-        if (delectStudent>0){
+        final int deleteStudent = mapper.deleteStudent(1);
+        if (deleteStudent>0){
             sqlSession.commit();
         }
         sqlSession.close();
@@ -32,5 +33,40 @@ public class StudentMapperTest {
             sqlSession.commit();
         }
         sqlSession.close();
+    }
+    @Test
+    public void update(){
+        final HashMap<String, Object> map = new HashMap<>();
+        map.put("grade",28.9);
+        map.put("id",5);
+        final SqlSession sqlSession = MybatisUtils.getSqlSession();
+        final StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        final int update = mapper.update(map);
+        if (update>0){
+            sqlSession.commit();
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void fuzzy_query(){
+        final SqlSession sqlSession = MybatisUtils.getSqlSession();
+        final StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        final List<Student> fuzzy_query = mapper.fuzzy_query("%张%");
+        for (Student student : fuzzy_query) {
+            System.out.println(student);
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void seletelimit(){
+        final HashMap<String, Integer> map = new HashMap<>();
+        map.put("startIndex",0);
+        map.put("pageSize",4);
+        final SqlSession sqlSession = MybatisUtils.getSqlSession();
+        final StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        final List<Student> seletelimit = mapper.seletelimit(map);
+        for (Student student : seletelimit) {
+            System.out.println(student);
+        }
     }
 }

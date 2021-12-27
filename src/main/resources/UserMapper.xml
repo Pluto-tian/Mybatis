@@ -4,11 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.UserMapper">
-    <select id="getUserList" resultType="pojo.user.User">
-        select *
-        from user
+    <select id="getUserList" resultType="User">
+        select * from flask.user
     </select>
-    <insert id="add_User" parameterType="pojo.user.User">
+    <insert id="add_User" parameterType="User">
         insert into flask.user(id, username, password, phone)
         VALUES (#{id}, #{username}, #{password}, #{phone})
     </insert>
@@ -21,7 +20,7 @@
         from flask.user
         where id = #{id}
     </delete>
-    <update id="update" parameterType="pojo.user.User">
+    <update id="update" parameterType="User">
         update flask.user set password=#{password} where id=#{id};
     </update>
 </mapper>

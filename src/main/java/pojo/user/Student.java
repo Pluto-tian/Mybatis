@@ -1,11 +1,14 @@
 package pojo.user;
 
+import org.apache.ibatis.type.Alias;
+
 import java.util.Date;
 
 /**
  * @author Hoaer
  * @version 1.0
  */
+@Alias("student")
 public class Student {
     @Override
     public String toString() {
